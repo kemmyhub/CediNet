@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import logo from './assets/logo.png';
 import { 
   Calculator, 
   DollarSign, 
@@ -116,9 +115,9 @@ export default function App() {
       <header className="mb-8 md:mb-12 text-center">
         <div className="flex items-center justify-center mb-4 md:mb-6 mx-auto">
           <img 
-            src={logo} 
+            src="/logo.png" 
             alt="CediNet Logo" 
-            className="w-56 h-56 md:w-80 md:h-80 object-contain"
+            className="w-full max-w-[320px] md:max-w-[500px] h-auto object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
