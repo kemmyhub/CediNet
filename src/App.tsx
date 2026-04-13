@@ -216,8 +216,8 @@ export default function App() {
             onClick={() => setActiveTab(tab)}
             className={`flex-1 min-w-[80px] py-2 text-[10px] md:text-sm font-semibold rounded-xl transition-all whitespace-nowrap ${
               activeTab === tab 
-                ? 'bg-white shadow-sm text-apple-gray-500' 
-                : 'text-apple-gray-400 hover:text-apple-gray-500'
+                ? 'bg-apple-blue text-white shadow-lg shadow-apple-blue/20' 
+                : 'text-apple-gray-400 hover:text-apple-blue hover:bg-apple-blue/5'
             }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -250,7 +250,7 @@ export default function App() {
                   </div>
                   <div className="apple-card p-5">
                     <p className="text-xs font-semibold text-apple-gray-400 uppercase mb-1">Total Deductions</p>
-                    <p className="text-xl font-bold text-red-500">{formatCurrency(calculations.totalDeductions)}</p>
+                    <p className="text-xl font-bold text-apple-gray-400">{formatCurrency(calculations.totalDeductions)}</p>
                   </div>
                 </div>
 
@@ -283,9 +283,9 @@ export default function App() {
 
             {activeTab === 'monthly' && (
               <div className="space-y-6">
-                <div className="apple-card">
-                  <h4 className="text-sm font-bold mb-6 flex items-center gap-2">
-                    <DollarSign className="w-4 h-4 text-apple-blue" />
+                <div className="apple-card border-l-4 border-apple-gray-400">
+                  <h4 className="text-sm font-bold mb-6 flex items-center gap-2 text-apple-gray-400">
+                    <DollarSign className="w-4 h-4" />
                     Gross Salary Components
                   </h4>
                   <div className="space-y-4">
@@ -304,16 +304,16 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="apple-card">
-                  <h4 className="text-sm font-bold mb-6 flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-apple-blue" />
+                <div className="apple-card border-l-4 border-apple-blue">
+                  <h4 className="text-sm font-bold mb-6 flex items-center gap-2 text-apple-blue">
+                    <TrendingUp className="w-4 h-4" />
                     Statutory Deductions
                   </h4>
                   <div className="space-y-6">
                     <div>
                       <div className="flex justify-between items-center mb-1">
                         <span className="font-semibold">SSNIT (5.5%)</span>
-                        <span className="font-bold text-red-500">{formatCurrency(calculations.ssnitAmount)}</span>
+                        <span className="font-bold text-apple-gray-400">{formatCurrency(calculations.ssnitAmount)}</span>
                       </div>
                       <p className="text-[10px] text-apple-gray-400">Employee pension contribution. Employer pays additional 13%.</p>
                     </div>
@@ -328,7 +328,7 @@ export default function App() {
                     <div>
                       <div className="flex justify-between items-center mb-1">
                         <span className="font-semibold">PAYE Income Tax</span>
-                        <span className="font-bold text-red-500">{formatCurrency(calculations.payeAmount)}</span>
+                        <span className="font-bold text-apple-gray-400">{formatCurrency(calculations.payeAmount)}</span>
                       </div>
                       <p className="text-[10px] text-apple-gray-400">Progressive tax based on Ghana Revenue Authority bands.</p>
                     </div>
@@ -344,21 +344,21 @@ export default function App() {
 
             {activeTab === 'biweekly' && (
               <div className="space-y-6">
-                <div className="apple-card">
+                <div className="apple-card border-l-4 border-apple-gray-300">
                   <div className="flex items-center gap-3 mb-2">
-                    <Calendar className="text-apple-blue w-5 h-5" />
-                    <h4 className="text-sm font-bold">Payment Schedule</h4>
+                    <Calendar className="text-apple-gray-300 w-5 h-5" />
+                    <h4 className="text-sm font-bold text-apple-gray-300">Payment Schedule</h4>
                   </div>
                   <p className="text-xs text-apple-gray-400 mb-6">Payments on the 15th and last day of each month</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div className="bg-apple-gray-100 p-6 rounded-2xl">
-                      <p className="text-[10px] font-bold text-apple-gray-400 uppercase mb-1">1st Payment (15th)</p>
-                      <p className="text-2xl font-bold">{formatCurrency(calculations.biweekly.net)}</p>
+                    <div className="bg-apple-gray-100 p-6 rounded-2xl border border-apple-gray-300/10">
+                      <p className="text-[10px] font-bold text-apple-gray-300 uppercase mb-1">1st Payment (15th)</p>
+                      <p className="text-2xl font-bold text-apple-blue">{formatCurrency(calculations.biweekly.net)}</p>
                     </div>
-                    <div className="bg-apple-gray-100 p-6 rounded-2xl">
-                      <p className="text-[10px] font-bold text-apple-gray-400 uppercase mb-1">2nd Payment (End)</p>
-                      <p className="text-2xl font-bold">{formatCurrency(calculations.biweekly.net)}</p>
+                    <div className="bg-apple-gray-100 p-6 rounded-2xl border border-apple-gray-300/10">
+                      <p className="text-[10px] font-bold text-apple-gray-300 uppercase mb-1">2nd Payment (End)</p>
+                      <p className="text-2xl font-bold text-apple-blue">{formatCurrency(calculations.biweekly.net)}</p>
                     </div>
                   </div>
 
@@ -369,11 +369,11 @@ export default function App() {
                     </div>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-apple-gray-400">SSNIT (5.5%)</span>
-                      <span className="font-medium text-red-500">-{formatCurrency(calculations.biweekly.ssnit)}</span>
+                      <span className="font-medium text-apple-gray-400">-{formatCurrency(calculations.biweekly.ssnit)}</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-apple-gray-400">PAYE Tax</span>
-                      <span className="font-medium text-red-500">-{formatCurrency(calculations.biweekly.paye)}</span>
+                      <span className="font-medium text-apple-gray-400">-{formatCurrency(calculations.biweekly.paye)}</span>
                     </div>
                   </div>
                 </div>
@@ -382,7 +382,7 @@ export default function App() {
 
             {activeTab === 'annual' && (
               <div className="space-y-6">
-                <div className="bg-apple-gray-300 p-6 md:p-10 rounded-[32px] md:rounded-[40px] text-white text-center shadow-xl shadow-apple-gray-300/20">
+                <div className="bg-apple-gray-300 p-6 md:p-10 rounded-[32px] md:rounded-[40px] text-white text-center shadow-xl shadow-apple-gray-300/30">
                   <p className="text-white/80 font-semibold text-[10px] md:text-xs uppercase tracking-[0.2em] mb-3">Annual Net Income</p>
                   <h3 className="text-3xl md:text-5xl font-bold mb-4 break-words">{formatCurrency(calculations.annual.net)}</h3>
                   <div className="inline-flex items-center gap-2 px-4 py-1 bg-white/20 rounded-full text-[10px] font-medium">
@@ -391,34 +391,34 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="apple-card">
+                <div className="apple-card border-l-4 border-apple-gray-300">
                   <div className="space-y-5">
                     <div className="flex justify-between items-center gap-2">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
-                          <TrendingUp className="w-4 h-4 text-green-600" />
+                        <div className="w-8 h-8 bg-apple-gray-300/10 rounded-lg flex items-center justify-center shrink-0">
+                          <TrendingUp className="w-4 h-4 text-apple-gray-300" />
                         </div>
                         <span className="text-sm font-medium truncate">Annual Gross</span>
                       </div>
-                      <span className="font-bold shrink-0">{formatCurrency(calculations.annual.gross)}</span>
+                      <span className="font-bold shrink-0 text-apple-blue">{formatCurrency(calculations.annual.gross)}</span>
                     </div>
                     <div className="flex justify-between items-center gap-2">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                          <ShieldCheck className="w-4 h-4 text-red-600" />
+                        <div className="w-8 h-8 bg-apple-gray-400/10 rounded-lg flex items-center justify-center shrink-0">
+                          <ShieldCheck className="w-4 h-4 text-apple-gray-400" />
                         </div>
-                        <span className="text-sm font-medium truncate">Annual SSNIT</span>
+                        <span className="text-sm font-medium truncate text-apple-gray-400">Annual SSNIT</span>
                       </div>
-                      <span className="font-bold text-red-500 shrink-0">-{formatCurrency(calculations.annual.ssnit)}</span>
+                      <span className="font-bold text-apple-gray-400 shrink-0">-{formatCurrency(calculations.annual.ssnit)}</span>
                     </div>
                     <div className="flex justify-between items-center gap-2">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                          <DollarSign className="w-4 h-4 text-red-600" />
+                        <div className="w-8 h-8 bg-apple-gray-400/10 rounded-lg flex items-center justify-center shrink-0">
+                          <DollarSign className="w-4 h-4 text-apple-gray-400" />
                         </div>
-                        <span className="text-sm font-medium truncate">Annual PAYE</span>
+                        <span className="text-sm font-medium truncate text-apple-gray-400">Annual PAYE</span>
                       </div>
-                      <span className="font-bold text-red-500 shrink-0">-{formatCurrency(calculations.annual.paye)}</span>
+                      <span className="font-bold text-apple-gray-400 shrink-0">-{formatCurrency(calculations.annual.paye)}</span>
                     </div>
                   </div>
                 </div>
