@@ -115,7 +115,7 @@ export default function App() {
       <header className="mb-8 md:mb-12 text-center">
         <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-apple-blue rounded-2xl mb-4 md:mb-6 shadow-xl shadow-apple-blue/20 overflow-hidden">
           <img 
-            src="src/profit.png" 
+            src="src/img/profit.png" 
             alt="CediNet Logo" 
             className="w-8 h-8 md:w-10 md:h-10 object-contain mix-blend-screen"
             referrerPolicy="no-referrer"
