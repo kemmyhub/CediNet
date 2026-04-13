@@ -118,7 +118,7 @@ export default function App() {
           <img 
             src={logo} 
             alt="CediNet Logo" 
-            className="w-32 h-32 md:w-48 md:h-48 object-contain"
+            className="w-56 h-56 md:w-80 md:h-80 object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
