@@ -4,12 +4,12 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  --color-apple-blue: #007AFF;
-  --color-apple-gray-100: #F5F5F7;
-  --color-apple-gray-200: #E8E8ED;
-  --color-apple-gray-300: #D2D2D7;
-  --color-apple-gray-400: #86868B;
-  --color-apple-gray-500: #1D1D1F;
+  --color-apple-blue: #334870;
+  --color-apple-gray-100: #FCFCFE;
+  --color-apple-gray-200: #FDFDFD;
+  --color-apple-gray-300: #D5A235;
+  --color-apple-gray-400: #58647D;
+  --color-apple-gray-500: #334870;
   
   --radius-apple: 12px;
   --radius-apple-lg: 20px;
@@ -17,13 +17,13 @@
 
 @layer base {
   body {
-    @apply bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased;
+    @apply bg-[#FCFCFE] text-[#334870] font-sans antialiased;
   }
 }
 
 @layer components {
   .apple-card {
-    @apply bg-white rounded-[20px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/5 p-6;
+    @apply bg-[#FDFDFD] rounded-[20px] shadow-[0_2px_12px_rgba(51,72,112,0.08)] border border-[#334870]/5 p-6;
   }
   
   .apple-button {
@@ -31,7 +31,7 @@
   }
   
   .apple-input {
-    @apply bg-[#F5F5F7] border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#007AFF] outline-none transition-all;
+    @apply bg-[#FCFCFE] border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#D5A235] outline-none transition-all;
   }
 
   .no-scrollbar::-webkit-scrollbar {

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import logo from './assets/profit.png';
+import logo from './assets/logo.png';
 import { 
   Calculator, 
   DollarSign, 
@@ -114,16 +114,14 @@ export default function App() {
     <div className="min-h-screen max-w-2xl mx-auto px-4 py-6 md:py-20">
       {/* Header */}
       <header className="mb-8 md:mb-12 text-center">
-        <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-apple-blue rounded-2xl mb-4 md:mb-6 shadow-xl shadow-apple-blue/20 overflow-hidden">
+        <div className="flex items-center justify-center mb-4 md:mb-6 mx-auto">
           <img 
             src={logo} 
             alt="CediNet Logo" 
-            className="w-8 h-8 md:w-10 md:h-10 object-contain mix-blend-screen"
+            className="w-32 h-32 md:w-48 md:h-48 object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-1 md:mb-2">CediNet</h1>
-        <p className="text-xs md:text-sm text-apple-gray-400 font-medium">Professional Payroll Analysis</p>
       </header>
 
       {/* Settings Card */}
@@ -239,10 +237,10 @@ export default function App() {
           >
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                <div className="bg-apple-blue p-6 md:p-8 rounded-[32px] text-white shadow-2xl shadow-apple-blue/30 text-center">
-                  <p className="text-apple-blue/80 font-semibold text-[10px] md:text-sm uppercase tracking-widest mb-2">Net Monthly Salary</p>
+                <div className="bg-apple-blue p-6 md:p-8 rounded-[32px] text-white shadow-2xl shadow-apple-blue/20 text-center">
+                  <p className="text-white/70 font-semibold text-[10px] md:text-sm uppercase tracking-widest mb-2">Net Monthly Salary</p>
                   <h3 className="text-3xl md:text-5xl font-bold mb-4 break-words">{formatCurrency(calculations.netSalary)}</h3>
-                  <p className="text-apple-blue/70 text-xs md:text-sm">Take-home after all statutory deductions</p>
+                  <p className="text-white/60 text-xs md:text-sm">Take-home after all statutory deductions</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -384,10 +382,10 @@ export default function App() {
 
             {activeTab === 'annual' && (
               <div className="space-y-6">
-                <div className="bg-apple-gray-500 p-6 md:p-10 rounded-[32px] md:rounded-[40px] text-white text-center">
-                  <p className="text-apple-gray-300 font-semibold text-[10px] md:text-xs uppercase tracking-[0.2em] mb-3">Annual Net Income</p>
+                <div className="bg-apple-gray-300 p-6 md:p-10 rounded-[32px] md:rounded-[40px] text-white text-center shadow-xl shadow-apple-gray-300/20">
+                  <p className="text-white/80 font-semibold text-[10px] md:text-xs uppercase tracking-[0.2em] mb-3">Annual Net Income</p>
                   <h3 className="text-3xl md:text-5xl font-bold mb-4 break-words">{formatCurrency(calculations.annual.net)}</h3>
-                  <div className="inline-flex items-center gap-2 px-4 py-1 bg-white/10 rounded-full text-[10px] font-medium">
+                  <div className="inline-flex items-center gap-2 px-4 py-1 bg-white/20 rounded-full text-[10px] font-medium">
                     <Info className="w-3 h-3" />
                     Based on current exchange rate
                   </div>
