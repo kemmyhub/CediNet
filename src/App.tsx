@@ -110,23 +110,23 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen max-w-2xl mx-auto px-4 py-12 md:py-20">
+    <div className="min-h-screen max-w-2xl mx-auto px-4 py-6 md:py-20">
       {/* Header */}
-      <header className="mb-12 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-apple-blue rounded-2xl mb-6 shadow-xl shadow-apple-blue/20 overflow-hidden">
+      <header className="mb-8 md:mb-12 text-center">
+        <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-apple-blue rounded-2xl mb-4 md:mb-6 shadow-xl shadow-apple-blue/20 overflow-hidden">
           <img 
             src="input_file_0.png" 
             alt="CediNet Logo" 
-            className="w-10 h-10 object-contain mix-blend-screen"
+            className="w-8 h-8 md:w-10 md:h-10 object-contain mix-blend-screen"
             referrerPolicy="no-referrer"
           />
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">CediNet</h1>
-        <p className="text-apple-gray-400 font-medium">Professional Payroll Analysis</p>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-1 md:mb-2">CediNet</h1>
+        <p className="text-xs md:text-sm text-apple-gray-400 font-medium">Professional Payroll Analysis</p>
       </header>
 
       {/* Settings Card */}
-      <section className="apple-card mb-8 space-y-8">
+      <section className="apple-card mb-6 md:mb-8 space-y-6 md:space-y-8">
         <div>
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
@@ -210,7 +210,7 @@ export default function App() {
       </section>
 
       {/* Tabs */}
-      <nav className="flex p-1 bg-apple-gray-200 rounded-2xl mb-8 overflow-x-auto no-scrollbar">
+      <nav className="flex p-1 bg-apple-gray-200 rounded-2xl mb-6 md:mb-8 overflow-x-auto no-scrollbar">
         {(['overview', 'monthly', 'biweekly', 'annual'] as Tab[]).map((tab) => (
           <button
             key={tab}
@@ -227,7 +227,7 @@ export default function App() {
       </nav>
 
       {/* Content Area */}
-      <main className="relative min-h-[400px]">
+      <main className="relative min-h-[300px] md:min-h-[400px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -430,7 +430,7 @@ export default function App() {
       </main>
 
       {/* Footer / Contract Details */}
-      <footer className="mt-12 space-y-4">
+      <footer className="mt-8 md:mt-12 space-y-4">
         <div className="flex items-center gap-2 text-apple-gray-400 mb-4 px-2">
           <Briefcase className="w-4 h-4" />
           <h5 className="text-xs font-bold uppercase tracking-widest">Contractual Terms</h5>
