@@ -26,21 +26,6 @@ CediNet is a professional salary calculator and payroll analysis tool specifical
 - **Lucide React** (Icons)
 - **Motion** (Animations)
 
-## Local Setup
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the local dev server:
-   ```bash
-   npm start
-   ```
-3. Open the app in your browser at:
-   ```text
-   http://localhost:3000
-   ```
-
 ## Statutory Calculation Logic
 
 ### SSNIT

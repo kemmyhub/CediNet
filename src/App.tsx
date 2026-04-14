@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback, type ChangeEvent } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { 
   Calculator, 
   DollarSign, 
@@ -117,7 +117,7 @@ export default function App() {
           <img 
             src="/logo.png" 
             alt="CediNet Logo" 
-            className="w-full max-w-[320px] md:max-w-125 h-auto object-contain"
+            className="w-full max-w-[320px] md:max-w-[500px] h-auto object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
@@ -141,7 +141,7 @@ export default function App() {
               <input 
                 type="number" 
                 value={baseSalary}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setBaseSalary(parseFloat(e.target.value) || 0)}
+                onChange={(e) => setBaseSalary(parseFloat(e.target.value) || 0)}
                 className="apple-input w-full md:w-40 text-right pr-12 font-semibold text-lg"
                 step="1"
               />
@@ -194,7 +194,7 @@ export default function App() {
               <input 
                 type="number" 
                 value={exchangeRate}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                   setExchangeRate(parseFloat(e.target.value) || 0);
                   setLastUpdated(null); // Mark as manual
                 }}
@@ -213,7 +213,7 @@ export default function App() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 min-w-20 py-2 text-[10px] md:text-sm font-semibold rounded-xl transition-all whitespace-nowrap ${
+            className={`flex-1 min-w-[80px] py-2 text-[10px] md:text-sm font-semibold rounded-xl transition-all whitespace-nowrap ${
               activeTab === tab 
                 ? 'bg-apple-blue text-white shadow-lg shadow-apple-blue/20' 
                 : 'text-apple-gray-400 hover:text-apple-blue hover:bg-apple-blue/5'
@@ -225,7 +225,7 @@ export default function App() {
       </nav>
 
       {/* Content Area */}
-      <main className="relative min-h-75 md:min-h-100">
+      <main className="relative min-h-[300px] md:min-h-[400px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -236,9 +236,9 @@ export default function App() {
           >
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                <div className="bg-apple-blue p-6 md:p-8 rounded-4xl text-white shadow-2xl shadow-apple-blue/20 text-center">
+                <div className="bg-apple-blue p-6 md:p-8 rounded-[32px] text-white shadow-2xl shadow-apple-blue/20 text-center">
                   <p className="text-white/70 font-semibold text-[10px] md:text-sm uppercase tracking-widest mb-2">Net Monthly Salary</p>
-                  <h3 className="text-3xl md:text-5xl font-bold mb-4 wrap-break-word">{formatCurrency(calculations.netSalary)}</h3>
+                  <h3 className="text-3xl md:text-5xl font-bold mb-4 break-words">{formatCurrency(calculations.netSalary)}</h3>
                   <p className="text-white/60 text-xs md:text-sm">Take-home after all statutory deductions</p>
                 </div>
 
@@ -381,9 +381,9 @@ export default function App() {
 
             {activeTab === 'annual' && (
               <div className="space-y-6">
-                <div className="bg-apple-gray-300 p-6 md:p-10 rounded-4xl md:rounded-[40px] text-white text-center shadow-xl shadow-apple-gray-300/30">
+                <div className="bg-apple-gray-300 p-6 md:p-10 rounded-[32px] md:rounded-[40px] text-white text-center shadow-xl shadow-apple-gray-300/30">
                   <p className="text-white/80 font-semibold text-[10px] md:text-xs uppercase tracking-[0.2em] mb-3">Annual Net Income</p>
-                  <h3 className="text-3xl md:text-5xl font-bold mb-4 wrap-break-word">{formatCurrency(calculations.annual.net)}</h3>
+                  <h3 className="text-3xl md:text-5xl font-bold mb-4 break-words">{formatCurrency(calculations.annual.net)}</h3>
                   <div className="inline-flex items-center gap-2 px-4 py-1 bg-white/20 rounded-full text-[10px] font-medium">
                     <Info className="w-3 h-3" />
                     Based on current exchange rate
@@ -441,7 +441,7 @@ export default function App() {
             { title: 'Quarterly Review', desc: 'Purchasing power protection through periodic reviews.' },
             { title: 'Renegotiation', desc: 'Triggered if GHS depreciates 15%+ from baseline.' }
           ].map((item, i) => (
-            <div key={i} className="bg-white/50 border border-black/3 p-4 rounded-2xl">
+            <div key={i} className="bg-white/50 border border-black/[0.03] p-4 rounded-2xl">
               <p className="text-[10px] font-bold text-apple-gray-500 uppercase mb-1">{item.title}</p>
               <p className="text-[11px] text-apple-gray-400 leading-relaxed">{item.desc}</p>
             </div>
