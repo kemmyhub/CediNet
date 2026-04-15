@@ -7,7 +7,7 @@ CediNet is a professional salary calculator and payroll analysis tool specifical
 - **Real-time Exchange Rates**: Automatically fetches the latest USD to GHS market rates using the ExchangeRate-API.
 - **Statutory Deductions**:
   - **SSNIT (5.5%)**: Calculates the mandatory employee pension contribution.
-  - **PAYE Income Tax**: Implements the progressive tax bands as defined by the GRA (2024).
+  - **PAYE Income Tax**: Implements the progressive tax bands as defined by the GRA (2026).
 - **Flexible Inputs**:
   - Manually adjust your base salary in USD.
   - Override the exchange rate to match your specific bank's conversion rate.

@@ -451,7 +451,7 @@ export default function App() {
         
         <div className="pt-8 text-center space-y-2">
           <p className="text-[10px] text-apple-gray-300 font-medium">
-            &copy; 2024 CediNet. All statutory calculations based on GRA 2024 Tax Bands.
+            &copy; 2026 CediNet. All statutory calculations based on GRA 2026 Tax Bands.
           </p>
         </div>
       </footer>
