@@ -22,18 +22,6 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [isLoadingRate, setIsLoadingRate] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [serverStatus, setServerStatus] = useState<'online' | 'offline'>('offline');
-
-  const checkServerHealth = useCallback(async () => {
-    try {
-      const response = await fetch('/api/health');
-      if (response.ok) {
-        setServerStatus('online');
-      }
-    } catch (error) {
-      setServerStatus('offline');
-    }
-  }, []);
 
   const fetchExchangeRate = useCallback(async () => {
     setIsLoadingRate(true);
@@ -53,8 +41,7 @@ export default function App() {
 
   useEffect(() => {
     fetchExchangeRate();
-    checkServerHealth();
-  }, [fetchExchangeRate, checkServerHealth]);
+  }, [fetchExchangeRate]);
 
   const calculations = useMemo(() => {
     const ghsBase = baseSalary * exchangeRate;
@@ -463,17 +450,6 @@ export default function App() {
         </div>
         
         <div className="pt-8 text-center space-y-2">
-          <div className="flex items-center justify-center gap-2 group relative">
-            <div className={`w-1.5 h-1.5 rounded-full ${serverStatus === 'online' ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]' : 'bg-red-500'}`} />
-            <p className="text-[10px] text-apple-gray-300 font-bold uppercase tracking-widest cursor-help">
-              Backend Server: {serverStatus}
-            </p>
-            {serverStatus === 'offline' && (
-              <div className="absolute bottom-full mb-2 w-48 p-2 bg-apple-gray-500 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-relaxed shadow-xl">
-                The Node.js backend is only available when hosted on platforms that support persistent servers (like Cloud Run). Static hosts like Netlify only serve the frontend.
-              </div>
-            )}
-          </div>
           <p className="text-[10px] text-apple-gray-300 font-medium">
             &copy; 2024 CediNet. All statutory calculations based on GRA 2024 Tax Bands.
           </p>
