@@ -10,14 +10,15 @@ import {
   ShieldCheck,
   Briefcase,
   RefreshCw,
-  Wallet
+  Wallet,
+  PieChart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-type Tab = 'overview' | 'monthly' | 'biweekly' | 'annual';
+type Tab = 'overview' | 'monthly' | 'biweekly' | 'annual' | 'budgeting';
 
 export default function App() {
-  const [exchangeRate, setExchangeRate] = useState<number>(15.50);
+  const [exchangeRate, setExchangeRate] = useState<number>(11.09);
   const [baseSalary, setBaseSalary] = useState<number>(334.00);
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [isLoadingRate, setIsLoadingRate] = useState(false);
@@ -90,6 +91,11 @@ export default function App() {
         paye: payeAmount * 12,
         deductions: totalDeductions * 12,
         net: netSalary * 12
+      },
+      budget: {
+        needs: netSalary * 0.5,
+        wants: netSalary * 0.3,
+        savings: netSalary * 0.2
       }
     };
   }, [exchangeRate, baseSalary]);
@@ -159,12 +165,12 @@ export default function App() {
             </div>
             <div className="flex items-center gap-4">
               <a 
-                href="https://www.msn.com/en-us/money/currencyconverter?q=USD-GHS" 
+                href="https://www.bog.gov.gh/treasury-and-the-markets/daily-interbank-fx-rates/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-[10px] font-bold uppercase tracking-widest text-apple-gray-400 hover:text-apple-blue transition-colors flex items-center gap-1"
               >
-                Check MSN <ChevronRight className="w-2 h-2" />
+                Bank of Ghana <ChevronRight className="w-2 h-2" />
               </a>
               <button 
                 onClick={fetchExchangeRate}
@@ -172,10 +178,13 @@ export default function App() {
                 className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-apple-blue hover:opacity-70 transition-opacity disabled:opacity-30"
               >
                 <RefreshCw className={`w-3 h-3 ${isLoadingRate ? 'animate-spin' : ''}`} />
-                {isLoadingRate ? 'Sync Market Rate' : 'Sync Market Rate'}
+                {isLoadingRate ? 'Syncing...' : 'Sync Market Rate'}
               </button>
             </div>
           </div>
+          <p className="text-[10px] text-apple-gray-400 mb-2 italic">
+            *Sync uses global market data. For formal payroll, use the official Bank of Ghana rate.
+          </p>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
               <p className="font-semibold">USD to GHS Rate</p>
@@ -186,7 +195,7 @@ export default function App() {
                 <div className="group relative">
                   <Info className="w-3 h-3 text-apple-gray-300 cursor-help" />
                   <div className="absolute bottom-full left-0 mb-2 w-48 p-2 bg-apple-gray-500 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-relaxed shadow-xl">
-                    Rates vary between providers (MSN, Google, BoG). Use the rate that matches your bank's actual conversion.
+                    Market rates (from global APIs) often differ from official Bank of Ghana interbank rates. Use the BoG rate for accurate statutory payroll calculations.
                   </div>
                 </div>
               </div>
@@ -210,7 +219,7 @@ export default function App() {
 
       {/* Tabs */}
       <nav className="flex p-1 bg-apple-gray-200 rounded-2xl mb-6 md:mb-8 overflow-x-auto no-scrollbar">
-        {(['overview', 'monthly', 'biweekly', 'annual'] as Tab[]).map((tab) => (
+        {(['overview', 'monthly', 'biweekly', 'annual', 'budgeting'] as Tab[]).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -419,6 +428,74 @@ export default function App() {
                         <span className="text-sm font-medium truncate text-apple-gray-400">Annual PAYE</span>
                       </div>
                       <span className="font-bold text-apple-gray-400 shrink-0">-{formatCurrency(calculations.annual.paye)}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'budgeting' && (
+              <div className="space-y-6">
+                <div className="apple-card border-apple-blue shadow-xl">
+                  <div className="flex items-center gap-3 mb-6">
+                    <PieChart className="text-apple-blue w-6 h-6" />
+                    <h4 className="text-lg font-bold">50/30/20 Budgeting Rule</h4>
+                  </div>
+                  
+                  <p className="text-sm text-apple-gray-400 leading-relaxed mb-8">
+                    The 50/30/20 rule is a simple budgeting framework that divides after-tax income into 50% for Needs (essential expenses like housing and food), 30% for Wants (discretionary spending), and 20% for Savings and debt repayment. This method provides a structured approach to managing finances efficiently without complex tracking.
+                  </p>
+
+                  <div className="grid grid-cols-1 gap-6">
+                    <div className="p-6 rounded-[24px] bg-apple-blue/5 border border-apple-blue/10">
+                      <div className="flex justify-between items-end mb-4">
+                        <div>
+                          <p className="text-[10px] font-bold text-apple-blue uppercase tracking-widest mb-1">50% Needs</p>
+                          <h5 className="text-2xl font-bold text-apple-blue">{formatCurrency(calculations.budget.needs)}</h5>
+                        </div>
+                        <span className="text-xs text-apple-blue/60 font-medium">Essentials & Housing</span>
+                      </div>
+                      <div className="w-full bg-apple-blue/10 h-2 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="bg-apple-blue h-full" 
+                          initial={{ width: 0 }} 
+                          animate={{ width: '50%' }} 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="p-6 rounded-[24px] bg-apple-gray-400/5 border border-apple-gray-400/10">
+                      <div className="flex justify-between items-end mb-4">
+                        <div>
+                          <p className="text-[10px] font-bold text-apple-gray-400 uppercase tracking-widest mb-1">30% Wants</p>
+                          <h5 className="text-2xl font-bold text-apple-gray-500">{formatCurrency(calculations.budget.wants)}</h5>
+                        </div>
+                        <span className="text-xs text-apple-gray-400 font-medium">Discretionary Spending</span>
+                      </div>
+                      <div className="w-full bg-apple-gray-400/10 h-2 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="bg-apple-gray-400 h-full" 
+                          initial={{ width: 0 }} 
+                          animate={{ width: '30%' }} 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="p-6 rounded-[24px] bg-green-500/5 border border-green-500/10">
+                      <div className="flex justify-between items-end mb-4">
+                        <div>
+                          <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest mb-1">20% Savings</p>
+                          <h5 className="text-2xl font-bold text-green-600">{formatCurrency(calculations.budget.savings)}</h5>
+                        </div>
+                        <span className="text-xs text-green-600/60 font-medium">Wealth Building & Debt</span>
+                      </div>
+                      <div className="w-full bg-green-500/10 h-2 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="bg-green-500 h-full" 
+                          initial={{ width: 0 }} 
+                          animate={{ width: '20%' }} 
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

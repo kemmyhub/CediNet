@@ -16,6 +16,7 @@ CediNet is a professional salary calculator and payroll analysis tool specifical
   - **Monthly**: Detailed breakdown of gross salary components and taxes.
   - **Bi-weekly**: Visualizes the standard 15th/end-of-month payment schedule.
   - **Annual**: Projects yearly earnings and total tax contributions.
+  - **Budgeting**: Integrates the **50/30/20 Rule** to help plan your needs, wants, and savings.
 - **Apple Design System**: A clean, minimal, and professional user interface inspired by modern design principles.
 
 ## Tech Stack
