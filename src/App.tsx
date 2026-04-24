@@ -119,13 +119,30 @@ export default function App() {
     <div className="min-h-screen max-w-2xl mx-auto px-4 py-6 md:py-20 overflow-x-hidden">
       {/* Header */}
       <header className="mb-8 md:mb-12 text-center">
-        <div className="flex flex-col items-center justify-center gap-3">
-          <div className="w-12 h-12 bg-apple-blue rounded-2xl flex items-center justify-center shadow-lg shadow-apple-blue/20 mb-1">
-            <Calculator className="text-white w-7 h-7" />
+        <div className="flex flex-col items-center justify-center gap-4">
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className="w-16 h-16 bg-gradient-to-br from-apple-blue to-[#4A5D8A] rounded-[22px] flex items-center justify-center shadow-2xl shadow-apple-blue/30 relative overflow-hidden group"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.25),transparent)] transition-opacity group-hover:opacity-100" />
+            <Calculator className="text-white w-9 h-9 relative z-10" />
+            <motion.div 
+              className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"
+              whileHover={{ opacity: 0.2 }}
+            />
+          </motion.div>
+          <div className="space-y-1">
+            <h1 className="text-4xl font-black tracking-tight text-[#334870]">
+              Cedi<span className="text-apple-blue/60">Net</span>
+            </h1>
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-[2px] w-4 bg-apple-blue/20" />
+              <p className="text-[10px] text-apple-gray-400 font-black uppercase tracking-[0.4em]">Salary Infrastructure</p>
+              <div className="h-[2px] w-4 bg-apple-blue/20" />
+            </div>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-[#334870]">CediNet</h1>
-          <div className="h-px w-12 bg-apple-blue/20 mx-auto" />
-          <p className="text-[10px] text-apple-gray-400 font-bold uppercase tracking-[0.3em]">Salary Infrastructure</p>
         </div>
       </header>
 
