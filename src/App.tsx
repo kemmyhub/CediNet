@@ -124,23 +124,19 @@ export default function App() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="w-16 h-16 bg-gradient-to-br from-apple-blue to-[#4A5D8A] rounded-[22px] flex items-center justify-center shadow-2xl shadow-apple-blue/30 relative overflow-hidden group"
+            className="w-16 h-16 bg-apple-blue rounded-[22px] flex items-center justify-center shadow-2xl shadow-apple-blue/40 relative overflow-hidden group"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.25),transparent)] transition-opacity group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.3),transparent)] transition-opacity group-hover:opacity-100" />
             <Calculator className="text-white w-9 h-9 relative z-10" />
-            <motion.div 
-              className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"
-              whileHover={{ opacity: 0.2 }}
-            />
           </motion.div>
           <div className="space-y-1">
-            <h1 className="text-4xl font-black tracking-tight text-[#334870]">
-              Cedi<span className="text-apple-blue/60">Net</span>
+            <h1 className="text-4xl font-black tracking-tight text-[#1D1D1F]">
+              Cedi<span className="text-apple-blue">Net</span>
             </h1>
             <div className="flex items-center justify-center gap-3">
-              <div className="h-[2px] w-4 bg-apple-blue/20" />
-              <p className="text-[10px] text-apple-gray-400 font-black uppercase tracking-[0.4em]">Salary Infrastructure</p>
-              <div className="h-[2px] w-4 bg-apple-blue/20" />
+              <div className="h-[2px] w-4 bg-apple-blue" />
+              <p className="text-[10px] text-apple-gray-600 font-black uppercase tracking-[0.4em]">Salary Infrastructure</p>
+              <div className="h-[2px] w-4 bg-apple-blue" />
             </div>
           </div>
         </div>
@@ -247,7 +243,7 @@ export default function App() {
 
       {/* Tabs */}
       <div className="relative mb-8 group/nav">
-        <nav className="relative flex p-1 bg-apple-gray-200/80 backdrop-blur-md rounded-[22px] overflow-x-auto no-scrollbar snap-x snap-mandatory ring-1 ring-apple-gray-300/10">
+        <nav className="relative flex p-1 bg-apple-gray-200 rounded-[22px] overflow-x-auto no-scrollbar snap-x snap-mandatory ring-1 ring-apple-gray-300">
           {(['overview', 'monthly', 'biweekly', 'annual', 'budgeting'] as Tab[]).map((tab) => (
             <button
               key={tab}
@@ -255,14 +251,14 @@ export default function App() {
               className={`flex-1 min-w-[110px] py-3 text-[11px] md:text-sm font-bold rounded-[18px] transition-all whitespace-nowrap snap-center mx-0.5 relative z-10 ${
                 activeTab === tab 
                   ? 'text-white' 
-                  : 'text-apple-gray-400 hover:text-apple-gray-600'
+                  : 'text-apple-gray-500 hover:text-[#1D1D1F]'
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
               {activeTab === tab && (
                 <motion.div
                   layoutId="nav-pill"
-                  className="absolute inset-0 bg-apple-blue rounded-[18px] -z-10 shadow-lg shadow-apple-blue/20"
+                  className="absolute inset-0 bg-apple-blue rounded-[18px] -z-10 shadow-lg shadow-apple-blue/30"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
