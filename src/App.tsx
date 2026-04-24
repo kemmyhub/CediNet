@@ -116,7 +116,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen max-w-2xl mx-auto px-4 py-6 md:py-20">
+    <div className="min-h-screen max-w-2xl mx-auto px-4 py-6 md:py-20 overflow-x-hidden">
       {/* Header */}
       <header className="mb-8 md:mb-12 text-center">
         <div className="flex items-center justify-center mb-4 md:mb-6 mx-auto">
