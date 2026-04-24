@@ -131,108 +131,143 @@ export default function App() {
       </header>
 
       {/* Settings Card */}
-      <section className="apple-card mb-6 md:mb-8 space-y-6 md:space-y-8">
+      <section className="apple-card mb-6 md:mb-8 space-y-8">
         <div>
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <Wallet className="text-apple-blue w-5 h-5" />
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-apple-gray-400">Salary Configuration</h2>
-            </div>
+          <div className="flex items-center gap-3 mb-6">
+            <Wallet className="text-apple-blue w-5 h-5" />
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-apple-gray-400">Salary Configuration</h2>
           </div>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <p className="font-semibold">Base Salary (USD)</p>
+          
+          <div className="space-y-4">
+            <div>
+              <p className="font-bold text-apple-gray-500">Base Salary (USD)</p>
               <p className="text-xs text-apple-gray-400">Monthly contract amount</p>
             </div>
-            <div className="relative flex items-center">
+            
+            <div className="relative group">
               <input 
                 type="number" 
                 value={baseSalary}
                 onChange={(e) => setBaseSalary(parseFloat(e.target.value) || 0)}
-                className="apple-input w-full md:w-40 text-right pr-12 font-semibold text-lg"
+                className="w-full bg-apple-gray-100 rounded-2xl px-6 py-4 text-3xl font-bold text-apple-gray-500 focus:outline-none focus:ring-2 focus:ring-apple-blue/20 transition-all text-right pr-16"
                 step="1"
               />
-              <span className="absolute right-4 text-apple-gray-400 text-sm font-medium">$</span>
+              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-apple-gray-400 text-xl font-bold">$</span>
             </div>
           </div>
         </div>
 
         <div className="pt-8 border-t border-apple-gray-100">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <ArrowRightLeft className="text-apple-blue w-5 h-5" />
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-apple-gray-400">Exchange Settings</h2>
-            </div>
-            <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 mb-6">
+            <ArrowRightLeft className="w-5 h-5 text-apple-blue" />
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-apple-gray-400">Exchange Settings</h2>
+          </div>
+
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-3">
               <a 
                 href="https://www.bog.gov.gh/treasury-and-the-markets/daily-interbank-fx-rates/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-[10px] font-bold uppercase tracking-widest text-apple-gray-400 hover:text-apple-blue transition-colors flex items-center gap-1"
+                className="flex items-center justify-center gap-2 py-3 bg-apple-gray-100 rounded-2xl group transition-all hover:bg-apple-gray-200"
               >
-                Bank of Ghana <ChevronRight className="w-2 h-2" />
+                <ChevronRight className="w-3 h-3 text-apple-blue group-hover:translate-x-0.5 transition-transform" />
+                <span className="text-[9px] font-bold uppercase tracking-widest text-apple-blue">Bank of Ghana</span>
               </a>
+
               <button 
                 onClick={fetchExchangeRate}
                 disabled={isLoadingRate}
-                className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-apple-blue hover:opacity-70 transition-opacity disabled:opacity-30"
+                className="flex items-center justify-center gap-2 py-3 bg-apple-gray-100 rounded-2xl group transition-all hover:bg-apple-gray-200 disabled:opacity-30"
               >
-                <RefreshCw className={`w-3 h-3 ${isLoadingRate ? 'animate-spin' : ''}`} />
-                {isLoadingRate ? 'Syncing...' : 'Sync Market Rate'}
+                <RefreshCw className={`w-3 h-3 text-apple-blue ${isLoadingRate ? 'animate-spin' : ''}`} />
+                <span className="text-[9px] font-bold uppercase tracking-widest text-apple-blue">
+                  {isLoadingRate ? 'Syncing...' : 'Sync Market'}
+                </span>
               </button>
             </div>
-          </div>
-          <p className="text-[10px] text-apple-gray-400 mb-2 italic">
-            *Sync uses global market data. For formal payroll, use the official Bank of Ghana rate.
-          </p>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <p className="font-semibold">USD to GHS Rate</p>
-              <div className="flex items-center gap-2">
-                <p className="text-xs text-apple-gray-400">
-                  {lastUpdated ? `Market rate synced at ${lastUpdated}` : 'Enter your preferred rate manually'}
-                </p>
-                <div className="group relative">
-                  <Info className="w-3 h-3 text-apple-gray-300 cursor-help" />
-                  <div className="absolute bottom-full left-0 mb-2 w-48 p-2 bg-apple-gray-500 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-relaxed shadow-xl">
-                    Market rates (from global APIs) often differ from official Bank of Ghana interbank rates. Use the BoG rate for accurate statutory payroll calculations.
+
+            <div className="space-y-4">
+              <div>
+                <p className="font-bold text-apple-gray-500">USD to GHS Rate</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-xs text-apple-gray-400">
+                    {lastUpdated ? `Last market update: ${lastUpdated}` : 'Manual conversion override'}
+                  </p>
+                  <div className="group relative">
+                    <Info className="w-3 h-3 text-apple-gray-300 cursor-help" />
+                    <div className="absolute bottom-full left-0 mb-2 w-48 p-2 bg-apple-gray-500 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 leading-relaxed shadow-xl">
+                      Official Bank of Ghana rates are recommended for accurate statutory payroll.
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <div className="relative group">
+                <input 
+                  type="number" 
+                  value={exchangeRate}
+                  onChange={(e) => {
+                    setExchangeRate(parseFloat(e.target.value) || 0);
+                    setLastUpdated(null);
+                  }}
+                  className={`w-full rounded-2xl px-6 py-4 text-2xl font-bold transition-all text-right pr-20 focus:outline-none focus:ring-2 focus:ring-apple-blue/20 ${
+                    !lastUpdated 
+                    ? 'bg-white border-2 border-apple-blue/30 text-apple-blue' 
+                    : 'bg-apple-gray-100 text-apple-gray-500'
+                  }`}
+                  step="0.01"
+                />
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-apple-gray-400 text-lg font-bold">GHS</span>
+              </div>
             </div>
-            <div className="relative flex items-center">
-              <input 
-                type="number" 
-                value={exchangeRate}
-                onChange={(e) => {
-                  setExchangeRate(parseFloat(e.target.value) || 0);
-                  setLastUpdated(null); // Mark as manual
-                }}
-                className={`apple-input w-full md:w-40 text-right pr-12 font-semibold text-lg ${!lastUpdated ? 'ring-1 ring-apple-blue/20 bg-white' : ''}`}
-                step="0.01"
-              />
-              <span className="absolute right-4 text-apple-gray-400 text-sm font-medium">GHS</span>
-            </div>
+            
+            <p className="text-[9px] text-apple-gray-400 italic leading-relaxed text-center px-4">
+              *Global market data is synced for convenience. Statutory compliance requires the official BoG rate.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Tabs */}
-      <nav className="flex p-1 bg-apple-gray-200 rounded-2xl mb-6 md:mb-8 overflow-x-auto no-scrollbar">
-        {(['overview', 'monthly', 'biweekly', 'annual', 'budgeting'] as Tab[]).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`flex-1 min-w-[80px] py-2 text-[10px] md:text-sm font-semibold rounded-xl transition-all whitespace-nowrap ${
-              activeTab === tab 
-                ? 'bg-apple-blue text-white shadow-lg shadow-apple-blue/20' 
-                : 'text-apple-gray-400 hover:text-apple-blue hover:bg-apple-blue/5'
-            }`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
-      </nav>
+      <div className="relative mb-8 group/nav">
+        <nav className="relative flex p-1 bg-apple-gray-200/80 backdrop-blur-md rounded-[22px] overflow-x-auto no-scrollbar snap-x snap-mandatory ring-1 ring-apple-gray-300/10">
+          {(['overview', 'monthly', 'biweekly', 'annual', 'budgeting'] as Tab[]).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`flex-1 min-w-[110px] py-3 text-[11px] md:text-sm font-bold rounded-[18px] transition-all whitespace-nowrap snap-center mx-0.5 relative z-10 ${
+                activeTab === tab 
+                  ? 'text-white' 
+                  : 'text-apple-gray-400 hover:text-apple-gray-600'
+              }`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {activeTab === tab && (
+                <motion.div
+                  layoutId="nav-pill"
+                  className="absolute inset-0 bg-apple-blue rounded-[18px] -z-10 shadow-lg shadow-apple-blue/20"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </button>
+          ))}
+        </nav>
+        
+        {/* Horizontal scroll hint indicator */}
+        <motion.div 
+          initial={{ opacity: 0, x: -5 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ repeat: Infinity, duration: 1.5, repeatType: "reverse" }}
+          className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none md:hidden z-20"
+        >
+          <div className="w-1.5 h-1.5 bg-apple-blue rounded-full shadow-sm" />
+          <ChevronRight className="w-4 h-4 text-apple-blue drop-shadow-sm" />
+        </motion.div>
+
+        {/* Gradient fades for scroll depth */}
+        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-apple-gray-200/50 to-transparent pointer-events-none rounded-r-[22px] md:hidden z-10" />
+      </div>
 
       {/* Content Area */}
       <main className="relative min-h-[300px] md:min-h-[400px]">
