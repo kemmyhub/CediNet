@@ -119,14 +119,13 @@ export default function App() {
     <div className="min-h-screen max-w-2xl mx-auto px-4 py-6 md:py-20 overflow-x-hidden">
       {/* Header */}
       <header className="mb-8 md:mb-12 text-center">
-        <div className="flex items-center justify-center mb-4 md:mb-6 mx-auto">
-          <img 
-            src="/cedinet-logo.png" 
-            alt="CediNet Logo" 
-            className="w-full max-w-[320px] md:max-w-[500px] h-auto object-contain"
-            style={{ minHeight: '80px' }}
-            referrerPolicy="no-referrer"
-          />
+        <div className="flex flex-col items-center justify-center gap-3">
+          <div className="w-12 h-12 bg-apple-blue rounded-2xl flex items-center justify-center shadow-lg shadow-apple-blue/20 mb-1">
+            <Calculator className="text-white w-7 h-7" />
+          </div>
+          <h1 className="text-3xl font-extrabold tracking-tight text-[#334870]">CediNet</h1>
+          <div className="h-px w-12 bg-apple-blue/20 mx-auto" />
+          <p className="text-[10px] text-apple-gray-400 font-bold uppercase tracking-[0.3em]">Salary Infrastructure</p>
         </div>
       </header>
 
